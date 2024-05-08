@@ -3,11 +3,11 @@ addEventListener('fetch', event => {
   })
   
   async function handleRequest(request) {
-	// Check if the request is a suspected bot (bot score < 30)
-	const botScore = request.headers.get('CF-Bot-Score');
-	if (botScore && parseInt(botScore) < 29) {
-	  // Redirect traffic from suspected bots to a different origin (httpbin.org)
-	  return Response.redirect('https://httpbin.org/get', 302);
+	const botScore = request.cf.botManagement.score
+	//Check if the bot score is less than 30
+	if (botScore && parseInt(botScore) < 30) {
+		//Redirect to httpbin.
+	  return fetch('https://httpbin.com/get');
 	  ;
 	} else {
 	  // Pass GET request traffic to the origin
