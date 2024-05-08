@@ -1,3 +1,8 @@
+/**
+ * URL to test https://toplevel.thegreycloud.com/get
+ */
+
+
 addEventListener('fetch', event => {
 	event.respondWith(handleRequest(event.request))
   })
